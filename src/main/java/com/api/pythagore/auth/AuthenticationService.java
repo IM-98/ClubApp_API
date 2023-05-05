@@ -27,6 +27,7 @@ public class AuthenticationService {
         .role(Role.USER)
         .build();
     repository.save(user);
+    System.out.println("user saved in db");
     var jwtToken = jwtService.generateToken(user);
     return AuthenticationResponse.builder()
         .token(jwtToken)
@@ -34,6 +35,7 @@ public class AuthenticationService {
   }
 
   public AuthenticationResponse authenticate(AuthenticationRequest request) {
+    System.out.println("authentification initiated");
     authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(
             request.getEmail(),

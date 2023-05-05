@@ -5,13 +5,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
 public class AuthenticationController {
 
   private final AuthenticationService service;
-
   @PostMapping("/register")
   public ResponseEntity<AuthenticationResponse> register(
       @RequestBody RegisterRequest request

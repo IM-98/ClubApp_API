@@ -1,16 +1,18 @@
 package com.api.pythagore.discipline;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 @Service
+@RequiredArgsConstructor
 public class DisciplineService implements IDisciplineService{
 
 
     // Attention, il vaut mieux utiliser l'injection via constructeur (à corriger)
-    @Autowired
-    DisciplineRepository disciplineRepository;
+
+    private final DisciplineRepository disciplineRepository;
 
     @Override
     public Discipline save(Discipline sport) {
@@ -24,6 +26,7 @@ public class DisciplineService implements IDisciplineService{
 
     @Override
     public Iterable<Discipline> findAll() {
+        System.out.println("endpoint touché");
         return disciplineRepository.findAll();
     }
 

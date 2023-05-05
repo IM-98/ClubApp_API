@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/discipline")
 public class DisciplineController {
 
@@ -25,10 +25,12 @@ public class DisciplineController {
     public Optional<Discipline> GetDiscipline(@RequestParam Long id){
         return iDisciplineService.findById(id);
     }
-
+    @CrossOrigin("http://localhost:4200")
     @GetMapping(path = "/getAll")
     public Iterable<Discipline> GetAllDiscipline(){
-        return iDisciplineService.findAll();
+        System.out.println("endpoint touché");
+            return iDisciplineService.findAll();
     }
+
 
 }
