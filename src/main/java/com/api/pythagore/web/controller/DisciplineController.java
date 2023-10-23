@@ -1,8 +1,8 @@
-package com.api.pythagore.controller;
+package com.api.pythagore.web.controller;
 
 
-import com.api.pythagore.discipline.Discipline;
-import com.api.pythagore.discipline.IDisciplineService;
+import com.api.pythagore.domain.entity.discipline.Discipline;
+import com.api.pythagore.domain.service.IDisciplineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

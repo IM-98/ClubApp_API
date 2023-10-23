@@ -1,4 +1,4 @@
-package com.api.pythagore.auth;
+package com.api.pythagore.web.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,17 +1,17 @@
-package com.api.pythagore.user;
+package com.api.pythagore.domain.entity.user;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.time.Instant;
 import java.util.Collection;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,6 +20,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 @Entity
 @Table(name = "_user")
 public class User implements UserDetails {
@@ -27,11 +28,28 @@ public class User implements UserDetails {
   @Id
   @GeneratedValue
   private Integer id;
+
+  @Column(name = "prenom")
   private String firstname;
+
+  @Column(name = "nom")
   private String lastname;
+
+  @Column(name = "email")
   private String email;
+
+  @Column(name = "password")
   private String password;
 
+  @Column(name = "date_creation")
+  @CreatedDate
+  private Instant createdDate;
+
+  @Column(name = "date_modification")
+  @LastModifiedDate
+  private Instant updatedDate;
+
+  @Column(name = "role")
   @Enumerated(EnumType.STRING)
   private Role role;
 

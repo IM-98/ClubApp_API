@@ -1,5 +1,7 @@
-package com.api.pythagore.discipline;
+package com.api.pythagore.domain.service;
 
+
+import com.api.pythagore.domain.entity.discipline.Discipline;
 
 import java.util.Optional;
 

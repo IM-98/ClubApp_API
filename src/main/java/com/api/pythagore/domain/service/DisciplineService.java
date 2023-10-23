@@ -1,7 +1,8 @@
-package com.api.pythagore.discipline;
+package com.api.pythagore.domain.service;
 
+import com.api.pythagore.domain.entity.discipline.Discipline;
+import com.api.pythagore.domain.repository.DisciplineRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

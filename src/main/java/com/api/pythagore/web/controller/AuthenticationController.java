@@ -1,5 +1,9 @@
-package com.api.pythagore.auth;
+package com.api.pythagore.web.controller;
 
+import com.api.pythagore.web.dto.RegisterRequest;
+import com.api.pythagore.domain.service.AuthenticationService;
+import com.api.pythagore.web.dto.AuthenticationRequest;
+import com.api.pythagore.web.dto.AuthenticationResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
