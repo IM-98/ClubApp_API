@@ -29,19 +29,19 @@ public class User implements UserDetails {
   @GeneratedValue
   private Integer id;
 
-  @Column(name = "prenom")
+  @Column(name = "prenom", nullable = false)
   private String firstname;
 
-  @Column(name = "nom")
+  @Column(name = "nom", nullable = false)
   private String lastname;
 
-  @Column(name = "email")
+  @Column(name = "email", nullable = false, unique = true)
   private String email;
 
-  @Column(name = "password")
+  @Column(name = "password", nullable = false)
   private String password;
 
-  @Column(name = "date_creation")
+  @Column(name = "date_creation", nullable = false)
   @CreatedDate
   private Instant createdDate;
 
@@ -52,6 +52,9 @@ public class User implements UserDetails {
   @Column(name = "role")
   @Enumerated(EnumType.STRING)
   private Role role;
+
+  @Column(name = "active")
+  private boolean enabled;
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
