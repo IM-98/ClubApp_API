@@ -27,7 +27,7 @@ public class AuthenticationService {
     public AuthenticationResponse register(RegisterRequest request) {
         if (repository.findByEmail(request.getEmail()).isPresent()) {
             log.warn("email already used");
-            throw new BadRequestException("Un compte existe déjà avec cet email");
+            throw new IllegalStateException("Un compte existe déjà avec cet email");
         }
         User user = User.builder()
                 .firstname(request.getFirstname())

@@ -15,8 +15,16 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @Builder
 public class Discipline {
+    @SequenceGenerator(
+            name = "discipline_sequence",
+            sequenceName = "discipline_sequence",
+            allocationSize = 1
+    )
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "discipline_sequence"
+    )
     private Long id;
 
     @Column(name = "discipline")
