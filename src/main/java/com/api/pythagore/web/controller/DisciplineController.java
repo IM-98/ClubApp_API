@@ -2,34 +2,37 @@ package com.api.pythagore.web.controller;
 
 
 import com.api.pythagore.domain.entity.discipline.Discipline;
-import com.api.pythagore.domain.service.IDisciplineService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.api.pythagore.domain.service.DisciplineService;
+import com.api.pythagore.web.dto.DisciplineDto;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/discipline")
+@RequestMapping("/api/discipline")
+@RequiredArgsConstructor
+@Slf4j
 public class DisciplineController {
 
-    @Autowired
-    IDisciplineService iDisciplineService;
+    private final DisciplineService disciplineService;
 
-    @PostMapping(path="/create")
-    public Discipline PostDiscipline (@RequestBody Discipline discipline ){
-        return iDisciplineService.save(discipline);
+    @PostMapping(path = "/create")
+    public Discipline PostDiscipline(@RequestBody Discipline disciplineEntity) {
+        return disciplineService.save(disciplineEntity);
     }
 
     @GetMapping(path = "/get")
-    public Optional<Discipline> GetDiscipline(@RequestParam Long id){
-        return iDisciplineService.findById(id);
+    public Optional<Discipline> GetDiscipline(@RequestParam Long id) {
+        return disciplineService.findById(id);
     }
-    @CrossOrigin("http://localhost:4200")
-    @GetMapping(path = "/getAll")
-    public Iterable<Discipline> GetAllDiscipline(){
-        System.out.println("endpoint touché");
-            return iDisciplineService.findAll();
+
+    @GetMapping(path = "/get-all")
+    public List<DisciplineDto> GetAllDiscipline() {
+        log.info("endpoint");
+        return disciplineService.findAll();
     }
 
 

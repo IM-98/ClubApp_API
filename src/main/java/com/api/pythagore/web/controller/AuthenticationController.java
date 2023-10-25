@@ -23,20 +23,14 @@ public class AuthenticationController {
   // TODO : exception handler
   @PostMapping("/register")
   public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
-//    try {
       return ResponseEntity.ok(service.register(request));
-//    } catch (BadRequestException e) {
-//      return ResponseEntity
-//              .status(HttpStatus.BAD_REQUEST)
-//              .body(e);
-//    }
   }
 
   @PostMapping("/authenticate")
   public ResponseEntity<AuthenticationResponse> authenticate(
       @RequestBody AuthenticationRequest request
   ) {
-    return ResponseEntity.ok(service.authenticate(request));
+      return ResponseEntity.ok(service.authenticate(request));
   }
 
 

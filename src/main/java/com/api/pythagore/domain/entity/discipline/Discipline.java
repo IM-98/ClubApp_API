@@ -1,5 +1,6 @@
 package com.api.pythagore.domain.entity.discipline;
 
+import com.api.pythagore.domain.enums.DayOfTheWeek;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -27,23 +28,27 @@ public class Discipline {
     )
     private Long id;
 
-    @Column(name = "discipline")
-    private String discipline;
+    @Column(name = "name")
+    private String name;
 
-    @Column(name = "prix_annuel")
+    @Column(name = "annual_price")
     private int price;
 
-    @Column(name = "heure_debut")
-    private LocalTime heureDebut;
+    @Column(name = "start_time")
+    private LocalTime startTime;
 
-    @Column(name = "heure_fin")
-    private LocalTime heureFin;
+    @Column(name = "end_time")
+    private LocalTime endTime;
 
-    @Column(name = "date_creation")
+    @Column(name = "day")
+    @Enumerated(EnumType.STRING)
+    private DayOfTheWeek day;
+
+    @Column(name = "creation_date")
     @CreatedDate
     private Instant createdDate;
 
-    @Column(name = "date_modification")
+    @Column(name = "updated_date")
     @LastModifiedDate
     private Instant updatedDate;
 
