@@ -6,16 +6,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EntityListeners(AuditingEntityListener.class)
 @Entity
 public class Confirmation {
 
@@ -29,20 +27,19 @@ public class Confirmation {
             strategy = GenerationType.SEQUENCE,
             generator = "confirmation_sequence"
     )
-    private String id;
+    private Long id;
 
     @Column(name = "confirmation_token", nullable = false)
     private String uuid;
 
     @Column(name = "date_creation", nullable = false)
-    @CreatedDate
-    private Instant createdDate;
+    private LocalDateTime createdDate;
 
     @Column(name = "date_expiration", nullable = false)
-    private Instant expirationDate;
+    private LocalDateTime expirationDate;
 
     @Column(name = "date_confirmation")
-    private Instant confirmedAt;
+    private LocalDateTime confirmedAt;
 
     @ManyToOne
     @JoinColumn(
