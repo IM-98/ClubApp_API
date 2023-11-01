@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
 @Slf4j
@@ -17,7 +16,7 @@ public class AuthenticationController {
 
   private final AuthenticationService authenticationService;
 
-  // TODO : exception handler
+  // TODO : exception handler pour les erreur auth car Spring security les cast en 403
   @PostMapping("/register")
   public String register(@RequestBody RegisterRequest request) {
       return authenticationService.register(request);
@@ -32,7 +31,13 @@ public class AuthenticationController {
   public AuthenticationResponse authenticate(
       @RequestBody AuthenticationRequest request
   ) {
-      return authenticationService.authenticate(request);
+      try {
+          return authenticationService.authenticate(request);
+      }
+      catch (Exception e){
+          log.error(e.getMessage());
+          return null;
+      }
   }
 
 

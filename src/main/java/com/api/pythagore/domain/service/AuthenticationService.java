@@ -77,6 +77,7 @@ public class AuthenticationService {
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new BadRequestException("Utilisateur introuvable"));
         if (!user.isEnabled()) {
+            log.error("Veuillez activer votre compte");
             throw new BadRequestException("Veuillez activer votre compte");
         }
         var jwtToken = jwtService.generateToken(user);

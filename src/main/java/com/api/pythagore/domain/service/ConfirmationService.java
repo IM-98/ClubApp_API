@@ -7,12 +7,14 @@ import com.api.pythagore.domain.repository.UserRepository;
 import com.api.pythagore.web.exception.BadRequestException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ConfirmationService {
     private final ConfirmationRepository confirmationRepository;
     private final UserRepository userRepository;
@@ -43,6 +45,7 @@ public class ConfirmationService {
 
         userToConfirm.setEnabled(true);
         userRepository.save(userToConfirm);
+        log.info("user enabled");
 
         return token;
     }
