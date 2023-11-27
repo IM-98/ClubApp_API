@@ -1,6 +1,8 @@
 package com.api.pythagore.domain.service;
 
 import com.api.pythagore.domain.entity.confirmation.Confirmation;
+import com.api.pythagore.domain.service.email.EmailSender;
+import com.api.pythagore.domain.service.email.EmailService;
 import com.api.pythagore.web.dto.AuthenticationRequest;
 import com.api.pythagore.web.dto.AuthenticationResponse;
 import com.api.pythagore.web.dto.RegisterRequest;
@@ -29,6 +31,7 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
     private final ConfirmationService confirmationService;
+    private final EmailService emailService;
 
     public String register(RegisterRequest request) {
         Optional<User> userExists = userRepository.findByEmail(request.getEmail());
@@ -57,8 +60,12 @@ public class AuthenticationService {
                 .build();
         confirmationService.saveConfirmation(confirmation);
 
+        String link = "http://localhost:8080/api/auth/confirm?token=" + confirmationUuid;
         // Send mail
-
+        emailService.send(
+                request.getEmail(),
+                buildEmail(request.getFirstname(), link)
+        );
         return confirmation.getUuid();
     }
 

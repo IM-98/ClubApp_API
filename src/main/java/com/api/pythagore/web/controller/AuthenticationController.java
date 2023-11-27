@@ -4,6 +4,7 @@ import com.api.pythagore.web.dto.RegisterRequest;
 import com.api.pythagore.domain.service.AuthenticationService;
 import com.api.pythagore.web.dto.AuthenticationRequest;
 import com.api.pythagore.web.dto.AuthenticationResponse;
+import com.api.pythagore.web.dto.RegistrationToken;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -18,11 +19,12 @@ public class AuthenticationController {
 
   // TODO : exception handler pour les erreur auth car Spring security les cast en 403
   @PostMapping("/register")
-  public String register(@RequestBody RegisterRequest request) {
-      return authenticationService.register(request);
+  public RegistrationToken register(@RequestBody RegisterRequest request) {
+      String token = authenticationService.register(request);
+      return new RegistrationToken(token);
   }
 
-  @GetMapping("/confirm-registration")
+  @GetMapping("/confirm")
   public String confirmRegistration( @RequestParam("token") String token ){
       return authenticationService.confirmRegistration(token);
   }
