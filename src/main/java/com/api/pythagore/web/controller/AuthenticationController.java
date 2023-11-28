@@ -8,6 +8,7 @@ import com.api.pythagore.web.dto.RegistrationToken;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -23,10 +24,11 @@ public class AuthenticationController {
       String token = authenticationService.register(request);
       return new RegistrationToken(token);
   }
-
+    //TODO : variable d'environnement pour l'url de la page d'acceuil
   @GetMapping("/confirm")
-  public String confirmRegistration( @RequestParam("token") String token ){
-      return authenticationService.confirmRegistration(token);
+  public RedirectView confirmRegistration( @RequestParam("token") String token ){
+      authenticationService.confirmRegistration(token);
+      return new RedirectView("http://localhost:4200");
   }
 
   @PostMapping("/authenticate")
