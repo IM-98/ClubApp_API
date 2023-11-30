@@ -60,7 +60,7 @@ public class AuthenticationService {
                 .build();
         confirmationService.saveConfirmation(confirmation);
 
-        String link = "http://localhost:8080/api/auth/confirm?token=" + confirmationUuid;
+        String link = "http://pythagore.eu-west-3.elasticbeanstalk.com/api/auth/confirm?token=" + confirmationUuid;
         // Send mail
         emailService.send(
                 request.getEmail(),

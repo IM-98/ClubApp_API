@@ -28,7 +28,7 @@ public class AuthenticationController {
   @GetMapping("/confirm")
   public RedirectView confirmRegistration( @RequestParam("token") String token ){
       authenticationService.confirmRegistration(token);
-      return new RedirectView("http://localhost:4200");
+      return new RedirectView("http://pythagore-front.s3-website.eu-west-3.amazonaws.com/");
   }
 
   @PostMapping("/authenticate")
