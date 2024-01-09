@@ -12,6 +12,7 @@ import com.api.pythagore.domain.repository.UserRepository;
 import com.api.pythagore.web.exception.BadRequestException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -31,6 +32,9 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
     private final ConfirmationService confirmationService;
     private final EmailService emailService;
+
+    @Value("{aws.elasticUrl}")
+    private String elasticUrl;
 
     public String register(RegisterRequest request) {
         Optional<User> userExists = userRepository.findByEmail(request.getEmail());
@@ -59,7 +63,7 @@ public class AuthenticationService {
                 .build();
         confirmationService.saveConfirmation(confirmation);
 
-        String link = "http://pythagore.eu-west-3.elasticbeanstalk.com/api/auth/confirm?token=" + confirmationUuid;
+        String link = elasticUrl + "/api/auth/confirm?token=" + confirmationUuid;
         // Send mail
         emailService.send(
                 request.getEmail(),

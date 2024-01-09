@@ -7,6 +7,7 @@ import com.api.pythagore.web.dto.AuthenticationResponse;
 import com.api.pythagore.web.dto.RegistrationToken;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -16,33 +17,36 @@ import org.springframework.web.servlet.view.RedirectView;
 @Slf4j
 public class AuthenticationController {
 
-  private final AuthenticationService authenticationService;
+    private final AuthenticationService authenticationService;
 
-  // TODO : exception handler pour les erreur auth car Spring security les cast en 403
-  @PostMapping("/register")
-  public RegistrationToken register(@RequestBody RegisterRequest request) {
-      String token = authenticationService.register(request);
-      return new RegistrationToken(token);
-  }
+    @Value("{aws.s3Url}")
+    private String s3Url;
+
+    // TODO : exception handler pour les erreur auth car Spring security les cast en 403
+    @PostMapping("/register")
+    public RegistrationToken register(@RequestBody RegisterRequest request) {
+        String token = authenticationService.register(request);
+        return new RegistrationToken(token);
+    }
+
     //TODO : variable d'environnement pour l'url de la page d'acceuil
-  @GetMapping("/confirm")
-  public RedirectView confirmRegistration( @RequestParam("token") String token ){
-      authenticationService.confirmRegistration(token);
-      return new RedirectView("http://pythagore-front.s3-website.eu-west-3.amazonaws.com/");
-  }
+    @GetMapping("/confirm")
+    public RedirectView confirmRegistration(@RequestParam("token") String token) {
+        authenticationService.confirmRegistration(token);
+        return new RedirectView(s3Url);
+    }
 
-  @PostMapping("/authenticate")
-  public AuthenticationResponse authenticate(
-      @RequestBody AuthenticationRequest request
-  ) {
-      try {
-          return authenticationService.authenticate(request);
-      }
-      catch (Exception e){
-          log.error(e.getMessage());
-          return null;
-      }
-  }
+    @PostMapping("/authenticate")
+    public AuthenticationResponse authenticate(
+            @RequestBody AuthenticationRequest request
+    ) {
+        try {
+            return authenticationService.authenticate(request);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return null;
+        }
+    }
 
 
 }
