@@ -2,6 +2,7 @@ package com.api.pythagore.web.dto;
 
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalTime;
 
 @Getter
@@ -15,7 +16,7 @@ public class DisciplineDto {
 
     private String day;
 
-    private int price;
+    private BigDecimal price;
 
     private LocalTime startTime;
 

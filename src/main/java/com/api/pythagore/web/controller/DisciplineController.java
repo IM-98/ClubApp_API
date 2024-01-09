@@ -2,7 +2,7 @@ package com.api.pythagore.web.controller;
 
 
 import com.api.pythagore.domain.entity.discipline.Discipline;
-import com.api.pythagore.domain.service.DisciplineService;
+import com.api.pythagore.domain.service.admin.DisciplineService;
 import com.api.pythagore.web.dto.DisciplineDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +31,6 @@ public class DisciplineController {
 
     @GetMapping(path = "/get-all")
     public List<DisciplineDto> GetAllDiscipline() {
-        log.info("endpoint");
         return disciplineService.findAll();
     }
 

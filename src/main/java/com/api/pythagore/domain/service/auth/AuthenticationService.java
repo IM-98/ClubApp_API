@@ -1,7 +1,6 @@
-package com.api.pythagore.domain.service;
+package com.api.pythagore.domain.service.auth;
 
 import com.api.pythagore.domain.entity.confirmation.Confirmation;
-import com.api.pythagore.domain.service.email.EmailSender;
 import com.api.pythagore.domain.service.email.EmailService;
 import com.api.pythagore.web.dto.AuthenticationRequest;
 import com.api.pythagore.web.dto.AuthenticationResponse;
@@ -69,8 +68,8 @@ public class AuthenticationService {
         return confirmation.getUuid();
     }
 
-    public String confirmRegistration(String token) {
-        return confirmationService.confirmToken(token);
+    public void confirmRegistration(String token) {
+        confirmationService.confirmToken(token);
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {

@@ -1,4 +1,4 @@
-package com.api.pythagore.web.mapper;
+package com.api.pythagore.mapper;
 
 import com.api.pythagore.domain.entity.discipline.Discipline;
 import com.api.pythagore.web.dto.DisciplineDto;
@@ -10,6 +10,8 @@ import java.util.List;
 public interface DisciplineMapper {
 
     DisciplineDto map(Discipline discipline);
+
+    Discipline map(DisciplineDto dto);
 
     List<DisciplineDto> map(List<Discipline> disciplineList);
 

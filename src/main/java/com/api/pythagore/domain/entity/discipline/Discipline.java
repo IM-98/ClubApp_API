@@ -1,13 +1,16 @@
 package com.api.pythagore.domain.entity.discipline;
 
+import com.api.pythagore.domain.entity.club.Club;
 import com.api.pythagore.domain.enums.DayOfTheWeek;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -26,13 +29,17 @@ public class Discipline {
             strategy = GenerationType.SEQUENCE,
             generator = "discipline_sequence"
     )
+    @Column(name = "discipline_id")
     private Long id;
 
     @Column(name = "name")
     private String name;
 
-    @Column(name = "annual_price")
-    private int price;
+    @Column(name = "annual_price", precision = 8, scale = 2)
+    private BigDecimal price;
+
+    @ManyToMany(mappedBy = "disciplines")
+    private List<Club> clubs;
 
     @Column(name = "start_time")
     private LocalTime startTime;

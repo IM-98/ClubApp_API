@@ -1,5 +1,6 @@
 package com.api.pythagore.domain.entity.user;
 
+import com.api.pythagore.domain.entity.subscription.Subscription;
 import jakarta.persistence.*;
 
 import java.time.Instant;
@@ -35,6 +36,7 @@ public class User implements UserDetails {
           strategy = GenerationType.SEQUENCE,
           generator = "user_sequence"
   )
+  @Column(name = "user_id")
   private Integer id;
 
   @Column(name = "prenom", nullable = false)
@@ -48,6 +50,9 @@ public class User implements UserDetails {
 
   @Column(name = "password", nullable = false)
   private String password;
+
+  @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  private Subscription subscription;
 
   @Column(name = "date_creation", nullable = false)
   @CreatedDate

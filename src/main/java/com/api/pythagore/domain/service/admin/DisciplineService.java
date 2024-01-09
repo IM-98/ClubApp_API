@@ -1,9 +1,9 @@
-package com.api.pythagore.domain.service;
+package com.api.pythagore.domain.service.admin;
 
 import com.api.pythagore.domain.entity.discipline.Discipline;
 import com.api.pythagore.domain.repository.DisciplineRepository;
 import com.api.pythagore.web.dto.DisciplineDto;
-import com.api.pythagore.web.mapper.DisciplineMapper;
+import com.api.pythagore.mapper.DisciplineMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

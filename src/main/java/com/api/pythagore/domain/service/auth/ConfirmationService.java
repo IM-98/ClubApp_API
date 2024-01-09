@@ -1,4 +1,4 @@
-package com.api.pythagore.domain.service;
+package com.api.pythagore.domain.service.auth;
 
 import com.api.pythagore.domain.entity.confirmation.Confirmation;
 import com.api.pythagore.domain.entity.user.User;
@@ -24,7 +24,7 @@ public class ConfirmationService {
     }
 
     @Transactional
-    public String confirmToken(String token) {
+    public void confirmToken(String token) {
         Confirmation confirmation = confirmationRepository
                 .findByUuid(token)
                 .orElseThrow(()-> new BadRequestException("Aucune confirmation en attente trouvée"));
@@ -46,7 +46,5 @@ public class ConfirmationService {
         userToConfirm.setEnabled(true);
         userRepository.save(userToConfirm);
         log.info("user enabled");
-
-        return token;
     }
 }

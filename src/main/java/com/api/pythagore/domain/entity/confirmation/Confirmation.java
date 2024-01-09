@@ -27,6 +27,7 @@ public class Confirmation {
             strategy = GenerationType.SEQUENCE,
             generator = "confirmation_sequence"
     )
+    @Column(name = "confirmation_id")
     private Long id;
 
     @Column(name = "confirmation_token", nullable = false)

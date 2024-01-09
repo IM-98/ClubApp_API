@@ -1,7 +1,7 @@
 package com.api.pythagore.web.controller;
 
 import com.api.pythagore.web.dto.RegisterRequest;
-import com.api.pythagore.domain.service.AuthenticationService;
+import com.api.pythagore.domain.service.auth.AuthenticationService;
 import com.api.pythagore.web.dto.AuthenticationRequest;
 import com.api.pythagore.web.dto.AuthenticationResponse;
 import com.api.pythagore.web.dto.RegistrationToken;
