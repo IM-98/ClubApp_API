@@ -19,7 +19,7 @@ public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
 
-    @Value("{aws.s3Url}")
+    @Value("${aws.s3Url}")
     private String s3Url;
 
     // TODO : exception handler pour les erreur auth car Spring security les cast en 403

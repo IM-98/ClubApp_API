@@ -33,7 +33,7 @@ public class AuthenticationService {
     private final ConfirmationService confirmationService;
     private final EmailService emailService;
 
-    @Value("{aws.elasticUrl}")
+    @Value("${aws.elasticUrl}")
     private String elasticUrl;
 
     public String register(RegisterRequest request) {

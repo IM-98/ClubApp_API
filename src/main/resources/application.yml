@@ -25,6 +25,6 @@ spring:
           auth: true
           starttls:
             enable: true
-aws :
+aws:
   s3Url: ${S3_URL}
   elasticUrl: ${ELASTIC_URL}
