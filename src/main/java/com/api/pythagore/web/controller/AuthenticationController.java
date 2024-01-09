@@ -47,6 +47,10 @@ public class AuthenticationController {
             return null;
         }
     }
+    @DeleteMapping("/delete/{email}")
+    public void deleteUser(@PathVariable String email){
+        authenticationService.delete(email);
+    }
 
 
 }

@@ -96,6 +96,11 @@ public class AuthenticationService {
                 .build();
     }
 
+    public void delete(String email) {
+        User userToDelete = userRepository.findByEmail(email).orElseThrow(() -> new BadRequestException("User introuvable"));
+        userRepository.delete(userToDelete);
+    }
+
     private String buildEmail(String name, String link) {
         return "<div style=\"font-family:Helvetica,Arial,sans-serif;font-size:16px;margin:0;color:#0b0c0c\">\n" +
                 "\n" +
